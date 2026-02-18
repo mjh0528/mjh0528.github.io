@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { SiteFooter } from '@/app/components/site-footer';
 import { SiteHeader } from '@/app/components/site-header';
+import { getAuthorBadgeLabel, getAuthorBadgeTitle } from '@/app/lib/author-badge';
 
 type ArticleLayoutProps = {
   title: string;
@@ -27,8 +28,9 @@ export function ArticleLayout({ title, date, authorType, author, description, si
                   className={`inline-block px-2 py-0.5 text-[10px] font-[var(--font-jetbrains-mono)] uppercase ${
                     authorType === 'ai' ? 'border border-accent/60 text-accent' : 'border border-borderSubtle text-textMuted'
                   }`}
+                  title={getAuthorBadgeTitle(authorType)}
                 >
-                  {authorType === 'ai' ? 'AI' : 'ME'}
+                  {getAuthorBadgeLabel(authorType)}
                 </span>
                 <span className="font-[var(--font-jetbrains-mono)] text-xs">{author}</span>
               </div>

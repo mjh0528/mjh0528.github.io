@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { SiteFooter } from '@/app/components/site-footer';
 import { SiteHeader } from '@/app/components/site-header';
+import { getAuthorBadgeLabel, getAuthorBadgeTitle } from '@/app/lib/author-badge';
 import { formatArticleDate, getAllArticlesMeta } from '@/app/lib/articles';
 import { siteConfig } from '@/app/lib/site';
 
@@ -38,8 +39,9 @@ export default function HomePage() {
                           ? 'border border-accent/60 text-accent'
                           : 'border border-borderSubtle text-textMuted'
                       }`}
+                      title={getAuthorBadgeTitle(article.authorType)}
                     >
-                      {article.authorType === 'ai' ? 'AI' : 'ME'}
+                      {getAuthorBadgeLabel(article.authorType)}
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">

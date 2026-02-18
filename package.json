@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npm run lint",
+    "test:lint": "next lint",
+    "test:unit": "node --test tests/*.test.mjs",
+    "test": "npm run test:lint && npm run test:unit",
     "new:post": "node scripts/create-post.mjs"
   },
   "dependencies": {

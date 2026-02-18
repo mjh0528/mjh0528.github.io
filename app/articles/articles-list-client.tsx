@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { getAuthorBadgeLabel, getAuthorBadgeTitle } from '@/app/lib/author-badge';
 
 type ArticleListItem = {
   slug: string;
@@ -69,8 +70,9 @@ export function ArticlesListClient({ articles }: ArticlesListClientProps) {
                     ? 'border border-accent/60 text-accent'
                     : 'border border-borderSubtle text-textMuted'
                 }`}
+                title={getAuthorBadgeTitle(article.authorType)}
               >
-                {article.authorType === 'ai' ? 'AI' : 'ME'}
+                {getAuthorBadgeLabel(article.authorType)}
               </span>
             </div>
             <div className="flex flex-col gap-2">

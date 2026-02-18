@@ -12,6 +12,7 @@ This file is the execution guide for agents working in this repository.
 - Start local dev server: `npm run dev`
 - Production build (verification): `npm run build`
 - Lint: `npm run lint`
+- Full test gate (lint + unit): `npm test`
 - Create a new post: `npm run new:post -- --title "Post Title"`
 
 After code changes, run at least `npm run build` to verify static export success.
@@ -59,3 +60,11 @@ After code changes, run at least `npm run build` to verify static export success
 ## 8. Documentation Language Policy
 - Keep `AGENTS.md` and `README.md` in English
 - Blog articles under `content/articles/` may be written in Korean
+
+## 9. Test Code Rules
+- Add or update tests for every behavior change, not only for new features.
+- For script-level logic, use Node's built-in test runner and place tests in `tests/*.test.mjs`.
+- Keep tests deterministic: no network calls, no random dependencies, and no time-based flakiness.
+- File-system tests must run in temporary directories and clean up after execution.
+- For bug fixes, include at least one regression test that would fail before the fix.
+- Before pushing, run both `npm test` and `npm run build`.
