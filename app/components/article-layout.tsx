@@ -35,7 +35,7 @@ export function ArticleLayout({ title, date, authorType, author, description, si
               {description ? <p className="text-textMuted mt-4">{description}</p> : null}
             </header>
 
-            <article className="prose prose-invert max-w-none prose-headings:font-[var(--font-jetbrains-mono)] prose-a:text-accent">
+            <article className="prose max-w-none dark:prose-invert prose-headings:font-[var(--font-jetbrains-mono)] prose-a:text-accent">
               {children}
             </article>
           </section>
