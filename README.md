@@ -1,15 +1,15 @@
 # Personal Blog (Next.js + Tailwind)
 
-Next.js(TypeScript) + Tailwind CSS 기반 개인 블로그입니다.
+This is a personal blog built with Next.js (TypeScript), Tailwind CSS, and MDX.
 
-## Run locally
+## Run Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-브라우저에서 `http://localhost:3000` 확인
+Open `http://localhost:3000` in your browser.
 
 ## Build
 
@@ -17,74 +17,76 @@ npm run dev
 npm run build
 ```
 
-## 개인화(내 정보로 변경)
+## Personalization
 
-핵심 정보는 `app/lib/site.ts`에서 관리합니다.
+Core site metadata is managed in `app/lib/site.ts`.
 
-수정 항목:
-- `name`: 표시 이름
-- `title`: 브라우저 탭/메타 타이틀
-- `description`: 사이트 설명
-- `email`: 연락처
-- `intro`: 메인 소개 문구
-- `navigation`: 상단 메뉴
-- `socials`: 소셜 링크
+Fields you will likely update:
+- `name`: Display name
+- `title`: Browser tab title / default metadata title
+- `description`: Site description
+- `email`: Contact email
+- `intro`: Intro text on the home page
+- `navigation`: Header navigation items
+- `socials`: Social links
 
-## MDX 아티클 작성 방법
+## Writing MDX Articles
 
-글 원본은 `content/articles/*.mdx` 파일입니다.
+Article source files live in `content/articles/*.mdx`.
 
-### 1) 생성기 사용(권장)
+### 1) Use the generator (recommended)
 
 ```bash
 npm run new:post -- --title "My New Post"
 ```
 
-옵션:
-- `--description "요약"`
-- `--author-type ai|human` (기본값: `ai`)
-- `--author "표시 이름"` (미입력 시 `author-type`에 맞는 기본값 사용)
+Options:
+- `--description "One-line summary"`
+- `--author-type ai|human` (default: `ai`)
+- `--author "Display Name"` (uses a default value if omitted)
 - `--date YYYY-MM-DD`
 - `--slug post-slug`
 
-### 2) 템플릿 복사(수동)
+### 2) Copy the template (manual)
 
-`content/articles/_template.mdx`를 복사해서 새 파일을 만듭니다.
+Copy `content/articles/_template.mdx` and create a new file.
 
-예시:
+Example:
 
 ```bash
 cp content/articles/_template.mdx content/articles/my-second-post.mdx
 ```
 
-### 3) frontmatter 작성
+### 3) Fill frontmatter
 
-필수/권장 필드:
+Recommended fields:
 - `title`
 - `date` (`YYYY-MM-DD`)
 - `description`
 - `authorType` (`ai` or `human`)
-- `author` (작성자명)
+- `author`
 
-### 4) 본문 작성
+### 4) Write content
 
-Markdown/MDX 문법(JSX 포함)으로 본문을 작성하면:
-- 홈(`/`) 최신 글 3개 자동 반영
-- 아티클 목록(`/articles`) 전체 글 자동 반영 (검색 + 5개 단위 페이징)
-- 상세 페이지(`/articles/{slug}`) 자동 생성
+When you add Markdown/MDX content (including JSX if needed), it is automatically reflected in:
+- Home page (`/`) latest 3 articles
+- Article index (`/articles`) with search and 5-item pagination
+- Article detail pages (`/articles/{slug}`)
 
-### 참고
+### Notes
 
-- slug는 파일명 기준입니다.  
-예: `content/articles/my-second-post.mdx` -> `/articles/my-second-post`
-- `_`로 시작하는 파일은 목록/페이지 생성에서 제외됩니다.  
-예: `_template.mdx`
+- The slug is based on the filename.
+  Example: `content/articles/my-second-post.mdx` -> `/articles/my-second-post`
+- Files starting with `_` are excluded from listing/page generation.
+  Example: `_template.mdx`
 
-## GitHub Pages 배포
+## GitHub Pages Deployment
 
-1. 저장소 `Settings > Pages`에서 `Build and deployment`를 `GitHub Actions`로 설정
-2. `main` 브랜치에 push
-3. `.github/workflows/deploy.yml`가 자동으로 정적 사이트를 배포
+1. In repository settings, go to `Settings > Pages`
+2. Set `Build and deployment` to `GitHub Actions`
+3. Push to the `main` branch
+4. `.github/workflows/deploy.yml` builds and deploys the static site
 
-`next.config.mjs`는 저장소 이름이 `username.github.io`이면 루트 경로(`/`)로,
-프로젝트 저장소이면 `/<repo-name>` basePath를 자동 적용합니다.
+`next.config.mjs` automatically sets `basePath`:
+- `username.github.io` repository -> root path (`/`)
+- project repository -> `/<repo-name>`
