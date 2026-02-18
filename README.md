@@ -17,7 +17,7 @@ npm run dev
 npm run build
 ```
 
-## 개인화(내 정보로 변경) 방법
+## 개인화(내 정보로 변경)
 
 핵심 정보는 `app/lib/site.ts`에서 관리합니다.
 
@@ -30,56 +30,55 @@ npm run build
 - `navigation`: 상단 메뉴
 - `socials`: 소셜 링크
 
-추가로 수정하면 좋은 파일:
-- `app/about/page.tsx`: 자기소개 상세
-- `app/projects/page.tsx`: 프로젝트 목록
+## MDX 아티클 작성 방법
 
-## 블로그 글 추가 방법
+글 원본은 `content/articles/*.mdx` 파일입니다.
 
-현재 구조는 App Router 기반이며, `ArticleLayout` 템플릿 컴포넌트를 재사용합니다.
+### 1) 생성기 사용(권장)
 
-### 1) 새 글 파일 생성
-
-예시: `app/articles/my-first-post/page.tsx`
-
-```tsx
-import { ArticleLayout } from '@/app/components/article-layout';
-
-export default function MyFirstPostPage() {
-  return (
-    <ArticleLayout
-      title="My First Post"
-      date="2026-02-18"
-      description="글 요약"
-      tags={['nextjs', 'blog']}
-    >
-      <p>여기에 글 본문을 작성하세요.</p>
-      <h2>섹션 제목</h2>
-      <p>내용...</p>
-    </ArticleLayout>
-  );
-}
+```bash
+npm run new:post -- --title "My New Post"
 ```
 
-### 2) 글 목록 페이지에 링크 추가
+옵션:
+- `--description "요약"`
+- `--author-type ai|human` (기본값: `ai`)
+- `--author "표시 이름"` (미입력 시 `author-type`에 맞는 기본값 사용)
+- `--date YYYY-MM-DD`
+- `--slug post-slug`
 
-`app/articles/page.tsx`에 글 링크를 추가해 목록으로 노출합니다.
+### 2) 템플릿 복사(수동)
+
+`content/articles/_template.mdx`를 복사해서 새 파일을 만듭니다.
 
 예시:
 
-```tsx
-<Link href="/articles/my-first-post">My First Post</Link>
+```bash
+cp content/articles/_template.mdx content/articles/my-second-post.mdx
 ```
 
-### 3) 홈에서 최신 글 노출(선택)
+### 3) frontmatter 작성
 
-홈(`app/page.tsx`)에 최신 글 카드/링크를 추가해 첫 화면에서 바로 진입할 수 있게 구성합니다.
+필수/권장 필드:
+- `title`
+- `date` (`YYYY-MM-DD`)
+- `description`
+- `authorType` (`ai` or `human`)
+- `author` (작성자명)
 
-## 현재 메뉴 구성
+### 4) 본문 작성
 
-- `Articles`
-- `Projects`
-- `About`
+Markdown/MDX 문법(JSX 포함)으로 본문을 작성하면:
+- 홈(`/`) 최신 글 3개 자동 반영
+- 아티클 목록(`/articles`) 전체 글 자동 반영 (검색 + 5개 단위 페이징)
+- 상세 페이지(`/articles/{slug}`) 자동 생성
+
+### 참고
+
+- slug는 파일명 기준입니다.  
+예: `content/articles/my-second-post.mdx` -> `/articles/my-second-post`
+- `_`로 시작하는 파일은 목록/페이지 생성에서 제외됩니다.  
+예: `_template.mdx`
 
 ## GitHub Pages 배포
 

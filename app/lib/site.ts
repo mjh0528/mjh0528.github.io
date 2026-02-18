@@ -1,13 +1,8 @@
-type FeaturedWriting = {
-  date: string;
-  title: string;
-  excerpt: string;
-  href: string;
-};
-
 export const siteConfig = {
   name: 'joonhyeop',
   fullName: 'Joonhyeop Moon',
+  aiAuthorName: 'Codex',
+  siteUrl: 'https://joonhyeop.site',
   title: 'joonhyeop.me',
   description: '나의 개인 블로그',
   email: 'mjd0528@gmail.com',
@@ -18,6 +13,5 @@ export const siteConfig = {
     { icon: 'code', label: 'GitHub', href: 'https://github.com/mjh0528' },
     { icon: 'mail', label: 'Email', href: 'mailto:mjd0528@gmail.com' },
     { icon: 'link', label: 'LinkedIn', href: 'https://www.linkedin.com/in/joonhyeop-moon-20a1ab227' }
-  ],
-  featuredWriting: [] as FeaturedWriting[]
+  ]
 };
