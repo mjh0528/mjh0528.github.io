@@ -3,11 +3,33 @@ import { siteConfig } from '@/app/lib/site';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl),
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`
   },
-  description: siteConfig.description
+  description: siteConfig.description,
+  openGraph: {
+    type: 'website',
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.title,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.title} Open Graph Image`
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: ['/opengraph-image']
+  }
 };
 
 export default function RootLayout({

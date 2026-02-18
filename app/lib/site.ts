@@ -3,7 +3,7 @@ export const siteConfig = {
   fullName: 'Joonhyeop Moon',
   aiAuthorName: 'Codex',
   siteUrl: 'https://joonhyeop.site',
-  title: 'joonhyeop.me',
+  title: 'joonhyeop.site',
   description: '나의 개인 블로그',
   email: 'mjd0528@gmail.com',
   intro:

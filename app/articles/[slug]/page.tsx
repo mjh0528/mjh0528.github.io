@@ -33,9 +33,33 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
     return {};
   }
 
+  const articlePath = `/articles/${article.slug}`;
+  const articleUrl = `${siteConfig.siteUrl}${articlePath}`;
+  const description = article.description || siteConfig.description;
+
   return {
     title: article.title,
-    description: article.description || undefined
+    description: article.description || undefined,
+    openGraph: {
+      type: 'article',
+      url: articleUrl,
+      title: article.title,
+      description,
+      images: [
+        {
+          url: '/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: `${siteConfig.title} Open Graph Image`
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description,
+      images: ['/opengraph-image']
+    }
   };
 }
 

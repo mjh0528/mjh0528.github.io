@@ -11,7 +11,7 @@ export function SiteHeader() {
           href="/"
         >
           {siteConfig.name}
-          <span className="text-accent">.me</span>
+          <span className="text-accent">.site</span>
         </Link>
 
         <div className="flex items-center justify-between md:justify-end gap-4">
