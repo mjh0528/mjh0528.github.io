@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Children, isValidElement } from 'react';
 import remarkGfm from 'remark-gfm';
 import { ArticleLayout } from '@/app/components/article-layout';
+import { ShareLinkButton } from '@/app/articles/[slug]/share-link-button';
 import {
   extractArticleHeadings,
   formatArticleDate,
@@ -126,11 +127,7 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
 
           <div>
             <p className="mb-4 text-xs font-[var(--font-jetbrains-mono)] uppercase tracking-wider text-textMuted">Share</p>
-            <div className="flex items-center gap-4 text-textMuted">
-              <a className="hover:text-textMain transition-colors" href={articleUrl} rel="noreferrer" target="_blank">
-                <span className="material-symbols-outlined text-[18px]">link</span>
-              </a>
-            </div>
+            <ShareLinkButton url={articleUrl} />
           </div>
         </div>
       }

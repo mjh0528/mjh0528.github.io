@@ -13,6 +13,7 @@
   --surface-dark: 229 231 235;
   --border-dark: 209 213 219;
   --code-bg: 243 244 246;
+  --code-border: 203 213 225;
   --scrollbar-track: 241 245 249;
   --scrollbar-thumb: 148 163 184;
   --scrollbar-thumb-hover: 100 116 139;
@@ -30,7 +31,8 @@ html.dark {
   --accent: 59 130 246;
   --surface-dark: 23 23 23;
   --border-dark: 38 38 38;
-  --code-bg: 28 28 28;
+  --code-bg: 30 41 59;
+  --code-border: 71 85 105;
   --scrollbar-track: 10 10 10;
   --scrollbar-thumb: 38 38 38;
   --scrollbar-thumb-hover: 64 64 64;
@@ -81,4 +83,17 @@ body {
 
 .sharp-corners {
   border-radius: 0 !important;
+}
+
+.prose pre {
+  background-color: rgb(var(--code-bg));
+  border: 1px solid rgb(var(--code-border));
+  border-radius: 0.25rem;
+}
+
+.prose :not(pre) > code {
+  background-color: rgb(var(--code-bg));
+  border: 1px solid rgb(var(--code-border));
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.35rem;
 }
